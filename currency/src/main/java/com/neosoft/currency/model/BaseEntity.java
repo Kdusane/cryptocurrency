@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Data
+
 public class BaseEntity implements Persistable<UUID> {
     @Id
     private UUID id;
