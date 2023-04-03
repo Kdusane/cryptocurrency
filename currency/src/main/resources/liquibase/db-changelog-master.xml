@@ -6,4 +6,5 @@
     <include file="changelog/db-currency-table.sql" relativeToChangelogFile="true"/>
     <include file="changelog/db-cryptocurrency-table.sql" relativeToChangelogFile="true"/>
 
+
 </databaseChangeLog>

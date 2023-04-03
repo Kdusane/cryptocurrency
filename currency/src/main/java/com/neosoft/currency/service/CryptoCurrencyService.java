@@ -1,19 +1,21 @@
 package com.neosoft.currency.service;
 
-import com.neosoft.currency.model.Cryptocurrency;
-import org.springframework.stereotype.Service;
+import com.neosoft.currency.domain.BaseResponse;
+import com.neosoft.currency.domain.requestDTO.CryptoCurrencyDTO;
+import org.springframework.http.ResponseEntity;
 
-import java.util.List;
-import java.util.Optional;
+
 import java.util.UUID;
 
 
 public interface CryptoCurrencyService {
-    Cryptocurrency saveCryptoCurrency(Cryptocurrency cryptocurrency);
+    ResponseEntity<BaseResponse> saveCryptoCurrency(CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception;
 
-    List<Cryptocurrency> findAll();
+    ResponseEntity<BaseResponse> findAllCryptoCurrency();
 
-    Optional<Cryptocurrency> findById(UUID id);
+    ResponseEntity<BaseResponse> findByCryptoCurrencyId(UUID id) throws Exception;
 
-    String deleteCryptoCurrency(UUID id);
+    ResponseEntity<BaseResponse> deleteCryptoCurrency(UUID id) throws Exception;
+
+    ResponseEntity<BaseResponse> updateByCryptoCurrency(UUID id, CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception;
 }

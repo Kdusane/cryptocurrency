@@ -1,17 +1,22 @@
 package com.neosoft.currency.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 
 @Data
 @Builder
-@Table(schema = "currency")
-@EqualsAndHashCode(callSuper=false)
+@Entity
+@Table(name = "currency")
+//@EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Currency extends BaseEntity {
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "currencyId",referencedColumnName = "id")
+    private List<Cryptocurrency> cryptocurrency;
     private String country;
 }

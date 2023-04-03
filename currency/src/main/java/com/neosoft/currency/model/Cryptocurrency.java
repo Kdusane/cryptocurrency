@@ -1,15 +1,17 @@
 package com.neosoft.currency.model;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.*;
 
 
 @Data
 @Builder
-@Table(schema = "crypto_currency")
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@Entity
+@Table(name = "crypto_currency")
+//@EqualsAndHashCode(callSuper=false)
 public class Cryptocurrency extends BaseEntity{
+
 
 
 }

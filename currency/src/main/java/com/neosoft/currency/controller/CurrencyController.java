@@ -2,14 +2,10 @@ package com.neosoft.currency.controller;
 
 import com.neosoft.currency.domain.BaseResponse;
 import com.neosoft.currency.domain.requestDTO.CurrencyDTO;
-import com.neosoft.currency.model.Currency;
 import com.neosoft.currency.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -19,27 +15,31 @@ public class CurrencyController {
     CurrencyService currencyService;
 
     @PostMapping()
-    public ResponseEntity<BaseResponse> saveCurrency(@RequestBody CurrencyDTO currencyDTO)
-    {
+    public ResponseEntity<BaseResponse> saveCurrency(@RequestBody CurrencyDTO currencyDTO) throws Exception {
        return currencyService.saveCurrency(currencyDTO);
     }
 
     @GetMapping()
-    public List<Currency> findAllCurrency()
+    public ResponseEntity<BaseResponse> findAllCurrency()
     {
-        return currencyService.findAll();
+
+        return currencyService.findAllCurrency();
     }
 
     @GetMapping("/{currencyId}")
-    public Currency findById(@PathVariable(name = "currencyId") UUID id)
-    {
-        return currencyService.findById(id);
+    public ResponseEntity<BaseResponse> findByCurrencyId(@PathVariable(name = "currencyId") UUID id) throws Exception {
+        return currencyService.findByCurrencyId(id);
     }
 
     @DeleteMapping("/{currencyId}")
-    public String delete(@PathVariable(name = "currencyId") UUID id)
-    {
+    public ResponseEntity<BaseResponse> delete(@PathVariable(name = "currencyId") UUID id) throws Exception {
         return currencyService.deleteCurrency(id);
     }
+
+    @PutMapping("/{currencyId}")
+    public ResponseEntity<BaseResponse> update(@PathVariable(name = "currencyId") UUID id,@RequestBody CurrencyDTO currencyDTO) throws Exception {
+        return currencyService.updateCurrency(id,currencyDTO);
+    }
+
 
 }

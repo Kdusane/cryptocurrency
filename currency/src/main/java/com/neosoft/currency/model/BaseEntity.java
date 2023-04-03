@@ -1,21 +1,26 @@
 package com.neosoft.currency.model;
 
 
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
 
 import java.util.Objects;
 import java.util.UUID;
-
+@MappedSuperclass
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class BaseEntity implements Persistable<UUID> {
     @Id
     private UUID id;
     private String name;
     private String symbol;
     private double quotation;
+
 
     @Override
     public boolean isNew() {
