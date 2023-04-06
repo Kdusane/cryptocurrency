@@ -31,8 +31,6 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
             throw new AlreadyPresentException(ConstantUtils.CRYPTOCURRENCY_ALREADY_PRESENT);
         Cryptocurrency cryptocurrency1 = CryptoCurrencyHelper.cryptoCurrencyBuildEntity(cryptoCurrencyDTO);
         Cryptocurrency saveCryptoCurrency = cryptoCurrencyRepo.save(cryptocurrency1);
-        if (saveCryptoCurrency == null)
-            throw new NotCreatedException(ConstantUtils.CRYPTOCURRENCY_NOT_CREATED);
         BaseResponse baseResponse = BaseResponse.builder()
                 .data(saveCryptoCurrency)
                 .message(ConstantUtils.SUCCESFULLY_ADDED)
@@ -45,14 +43,6 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     @Override
     public ResponseEntity<BaseResponse> findAllCryptoCurrency() {
         List<Cryptocurrency> cryptoCurrencyList=cryptoCurrencyRepo.findAll();
-        if(cryptoCurrencyList==null)
-        {
-            BaseResponse baseResponse= BaseResponse.builder()
-                    .data(new ArrayList<>())
-                    .message(ConstantUtils.NO_CONTENT)
-                    .statusCode(HttpStatus.NO_CONTENT.value()).build();
-            return ResponseEntity.ok(baseResponse);
-        }
         BaseResponse baseResponse=BaseResponse.builder()
                 .data(cryptoCurrencyList)
                 .message(ConstantUtils.SUCCESSFULLY_FETCHED)
@@ -63,7 +53,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     @Override
     public ResponseEntity<BaseResponse> findByCryptoCurrencyId(UUID id)  {
         Optional<Cryptocurrency> cryptocurrencyOptional=cryptoCurrencyRepo.findById(id);
-        if(!cryptocurrencyOptional.isPresent())
+        if(cryptocurrencyOptional.isEmpty())
             throw new NotFoundException(ConstantUtils.CRYPTOCURRENCY_NOT_FOUND);
         BaseResponse baseResponse=BaseResponse.builder()
                 .data(cryptocurrencyOptional.get())
@@ -76,7 +66,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     @Override
     public ResponseEntity<BaseResponse> deleteCryptoCurrency(UUID id)  {
         Optional<Cryptocurrency> cryptocurrencyOptional =cryptoCurrencyRepo.findById(id);
-        if(!cryptocurrencyOptional.isPresent())
+        if(cryptocurrencyOptional.isEmpty())
             throw new NotFoundException(ConstantUtils.CRYPTOCURRENCY_NOT_FOUND);
         cryptoCurrencyRepo.delete(cryptocurrencyOptional.get());
         BaseResponse baseResponse=BaseResponse.builder()
@@ -89,7 +79,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     @Override
     public ResponseEntity<BaseResponse> updateByCryptoCurrency(UUID id, CryptoCurrencyDTO cryptoCurrencyDTO){
         Optional<Cryptocurrency> cryptocurrencyOptional=cryptoCurrencyRepo.findById(id);
-        if(!cryptocurrencyOptional.isPresent())
+        if(cryptocurrencyOptional.isEmpty())
             throw new NotFoundException(ConstantUtils.CRYPTOCURRENCY_NOT_FOUND);
         if(cryptoCurrencyDTO.getName()!=null)
             cryptocurrencyOptional.get().setName(cryptoCurrencyDTO.getName());
