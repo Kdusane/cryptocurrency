@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/currency/pom.xml" />
+        <option value="$PROJECT_DIR$/Cryptocurrency/pom.xml" />
       </list>
     </option>
   </component>
