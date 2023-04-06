@@ -4,7 +4,7 @@ public class ConstantUtils {
 
     private ConstantUtils(){}
 
-    public  static final String SOMETHING_WENT_WRONG  = "Something went Wrong";
+    public  static final String NOT_CREATED = "Not created";
     public  static final String SUCCESFULLY_ADDED = "Successfully Added";
 
     public static final String NO_CONTENT="no content";
@@ -15,4 +15,6 @@ public class ConstantUtils {
     public static final String SUCCESSFULLY_UPDATED="Successfully Updated";
 
     public static final String CURRENCY_NOT_FOUND="Currency Not Found";
+    public static final String CRYPTOCURRENCY_NOT_FOUND="Cryptocurrency Not Found";
+    public static final String CURRENCY_ALREADY_PRESENT="Currency Already Present";
 }

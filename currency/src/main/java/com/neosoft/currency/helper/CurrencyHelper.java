@@ -1,8 +1,6 @@
 package com.neosoft.currency.helper;
 
-import com.neosoft.currency.domain.requestDTO.CryptoCurrencyDTO;
 import com.neosoft.currency.domain.requestDTO.CurrencyDTO;
-import com.neosoft.currency.model.Cryptocurrency;
 import com.neosoft.currency.model.Currency;
 
 import java.util.ArrayList;
@@ -22,12 +20,12 @@ public class CurrencyHelper {
         currency.setSymbol(currencyDTO.getSymbol());
         currency.setId(UUID.randomUUID());
         currency.setName(currencyDTO.getName());
-        List<Cryptocurrency> cryptocurrencyList=new ArrayList<>();
-        for (CryptoCurrencyDTO cryptoCurrencyDTO:currencyDTO.getCryptoCurrencyDTOS()){
-            Cryptocurrency cryptocurrency=CryptoCurrencyHelper.cryptoCurrencyBuildEntity(cryptoCurrencyDTO);
-            cryptocurrencyList.add(cryptocurrency);
-        }
-        currency.setCryptocurrency(cryptocurrencyList);
+//        List<Cryptocurrency> cryptocurrencyList=new ArrayList<>();
+//        for (CryptoCurrencyDTO cryptoCurrencyDTO:currencyDTO.getCryptoCurrencyDTOS()){
+//            Cryptocurrency cryptocurrency=CryptoCurrencyHelper.cryptoCurrencyBuildEntity(cryptoCurrencyDTO);
+//            cryptocurrencyList.add(cryptocurrency);
+//        }
+//        currency.setCryptocurrency(cryptocurrencyList);
         return currency;
     }
 

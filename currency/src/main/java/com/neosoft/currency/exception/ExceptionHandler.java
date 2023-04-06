@@ -24,5 +24,19 @@ public class ExceptionHandler {
         return new BaseResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(),null);
     }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler(NotCreatedException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ResponseBody
+    public BaseResponse notCreatedException(final NotCreatedException ex){
+        log.error("not created");
+        return new BaseResponse(HttpStatus.NOT_ACCEPTABLE.value(),ex.getMessage(),null);
+    }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler(AlreadyPresentException.class)
+    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseBody
+    public BaseResponse alreadyPresentException(final AlreadyPresentException ex){
+        log.error("already present");
+        return new BaseResponse(HttpStatus.FOUND.value(),ex.getMessage(),null);
+    }
 }

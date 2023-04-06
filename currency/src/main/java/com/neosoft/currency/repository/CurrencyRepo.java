@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface CurrencyRepo extends JpaRepository<Currency, UUID> {
+    Currency findByName(String name);
 }

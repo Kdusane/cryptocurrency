@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class CurrencyDTO {
     private UUID id;
     private String name;
     private String symbol;
-    private double quotation;
+    private BigDecimal quotation;
     private String country;
-    private List<CryptoCurrencyDTO> cryptoCurrencyDTOS;
+//    private List<CryptoCurrencyDTO> cryptoCurrencyDTOS;
 }

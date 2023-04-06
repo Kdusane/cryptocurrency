@@ -3,6 +3,8 @@ package com.neosoft.currency.service.impl;
 import com.neosoft.currency.constants.ConstantUtils;
 import com.neosoft.currency.domain.BaseResponse;
 import com.neosoft.currency.domain.requestDTO.CurrencyDTO;
+import com.neosoft.currency.exception.AlreadyPresentException;
+import com.neosoft.currency.exception.NotCreatedException;
 import com.neosoft.currency.exception.NotFoundException;
 import com.neosoft.currency.helper.CurrencyHelper;
 import com.neosoft.currency.model.Currency;
@@ -26,16 +28,20 @@ public class CurrencyServiceImpl implements CurrencyService {
 
 
     public ResponseEntity<BaseResponse> saveCurrency(CurrencyDTO currencyDTO) throws Exception {
+       Currency currency1=currencyRepo.findByName(currencyDTO.getName());
+       if(currency1!=null) {
+            throw new AlreadyPresentException(ConstantUtils.CURRENCY_ALREADY_PRESENT);
+       }
        Currency currency = CurrencyHelper.currencyBuildEntity(currencyDTO);
-       Currency saveCurrency= currencyRepo.save(currency);
-       if(saveCurrency==null)
-                throw new Exception(ConstantUtils.SOMETHING_WENT_WRONG);
-           BaseResponse baseResponse = BaseResponse.builder()
-                   .data(saveCurrency)
-                   .message(ConstantUtils.SUCCESFULLY_ADDED)
-                   .statusCode(HttpStatus.CREATED.value())
-                   .build();
-           return ResponseEntity.ok(baseResponse);
+       Currency saveCurrency = currencyRepo.save(currency);
+       if (saveCurrency == null)
+            throw new NotCreatedException(ConstantUtils.NOT_CREATED);
+       BaseResponse baseResponse = BaseResponse.builder()
+                .data(saveCurrency)
+                .message(ConstantUtils.SUCCESFULLY_ADDED)
+                .statusCode(HttpStatus.CREATED.value())
+                .build();
+        return ResponseEntity.ok(baseResponse);
     }
 
 
@@ -90,10 +96,14 @@ public class CurrencyServiceImpl implements CurrencyService {
         Optional<Currency> currencyOptional=currencyRepo.findById(id);
         if(!currencyOptional.isPresent())
             throw new NotFoundException(ConstantUtils.CURRENCY_NOT_FOUND);
-        currencyOptional.get().setName(currencyDTO.getName());
-        currencyOptional.get().setSymbol(currencyDTO.getSymbol());
-        currencyOptional.get().setCountry(currencyDTO.getCountry());
-        currencyOptional.get().setQuotation(currencyDTO.getQuotation());
+        if(currencyDTO.getName()!=null)
+            currencyOptional.get().setName(currencyDTO.getName());
+        if(currencyDTO.getSymbol()!=null)
+            currencyOptional.get().setSymbol(currencyDTO.getSymbol());
+        if(currencyDTO.getCountry()!=null)
+            currencyOptional.get().setCountry(currencyDTO.getCountry());
+        if(currencyDTO.getQuotation()!=null)
+            currencyOptional.get().setQuotation(currencyDTO.getQuotation());
         currencyRepo.save(currencyOptional.get());
         BaseResponse baseResponse=BaseResponse.builder()
                 .data(currencyOptional.get())

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 @MappedSuperclass
@@ -19,7 +20,7 @@ public class BaseEntity implements Persistable<UUID> {
     private UUID id;
     private String name;
     private String symbol;
-    private double quotation;
+    private BigDecimal quotation;
 
 
     @Override

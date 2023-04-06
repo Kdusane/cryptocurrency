@@ -15,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Currency extends BaseEntity {
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "currencyId",referencedColumnName = "id")
-    private List<Cryptocurrency> cryptocurrency;
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    @JoinColumn(name = "currencyId",referencedColumnName = "id")
+////    private List<Cryptocurrency> cryptocurrency;
     private String country;
 }
