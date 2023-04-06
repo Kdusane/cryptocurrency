@@ -6,7 +6,6 @@ public class ConstantUtils {
 
 
     public  static final String SUCCESFULLY_ADDED = "Successfully Added";
-    public static final String NO_CONTENT="No Content";
     public static final String SUCCESSFULLY_FETCHED="Successfully Fetched";
     public static final String CRYPTOCURRENCY_FOUND="Cryptocurrency Found";
     public static final String SUCCESFULLY_DELETED="Successfully Deleted";
