@@ -9,13 +9,13 @@ import java.util.UUID;
 
 
 public interface CryptoCurrencyService {
-    ResponseEntity<BaseResponse> saveCryptoCurrency(CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception;
+    ResponseEntity<BaseResponse> saveCryptoCurrency(CryptoCurrencyDTO cryptoCurrencyDTO) ;
 
     ResponseEntity<BaseResponse> findAllCryptoCurrency();
 
-    ResponseEntity<BaseResponse> findByCryptoCurrencyId(UUID id) throws Exception;
+    ResponseEntity<BaseResponse> findByCryptoCurrencyId(UUID id);
 
-    ResponseEntity<BaseResponse> deleteCryptoCurrency(UUID id) throws Exception;
+    ResponseEntity<BaseResponse> deleteCryptoCurrency(UUID id) ;
 
-    ResponseEntity<BaseResponse> updateByCryptoCurrency(UUID id, CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception;
+    ResponseEntity<BaseResponse> updateByCryptoCurrency(UUID id, CryptoCurrencyDTO cryptoCurrencyDTO) ;
 }

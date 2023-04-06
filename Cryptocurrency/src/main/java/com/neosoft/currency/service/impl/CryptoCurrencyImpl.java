@@ -3,21 +3,17 @@ package com.neosoft.currency.service.impl;
 import com.neosoft.currency.constants.ConstantUtils;
 import com.neosoft.currency.domain.BaseResponse;
 import com.neosoft.currency.domain.requestDTO.CryptoCurrencyDTO;
-
 import com.neosoft.currency.exception.AlreadyPresentException;
 import com.neosoft.currency.exception.NotCreatedException;
 import com.neosoft.currency.exception.NotFoundException;
 import com.neosoft.currency.helper.CryptoCurrencyHelper;
 import com.neosoft.currency.model.Cryptocurrency;
-
-
 import com.neosoft.currency.repository.CryptoCurrencyRepo;
 import com.neosoft.currency.service.CryptoCurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +25,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     CryptoCurrencyRepo cryptoCurrencyRepo;
 
     @Override
-    public ResponseEntity<BaseResponse> saveCryptoCurrency(CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception {
+    public ResponseEntity<BaseResponse> saveCryptoCurrency(CryptoCurrencyDTO cryptoCurrencyDTO)  {
         Cryptocurrency cryptocurrency=cryptoCurrencyRepo.findByName(cryptoCurrencyDTO.getName());
         if(cryptocurrency!=null)
             throw new AlreadyPresentException(ConstantUtils.CRYPTOCURRENCY_ALREADY_PRESENT);
@@ -65,7 +61,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> findByCryptoCurrencyId(UUID id) throws Exception {
+    public ResponseEntity<BaseResponse> findByCryptoCurrencyId(UUID id)  {
         Optional<Cryptocurrency> cryptocurrencyOptional=cryptoCurrencyRepo.findById(id);
         if(!cryptocurrencyOptional.isPresent())
             throw new NotFoundException(ConstantUtils.CRYPTOCURRENCY_NOT_FOUND);
@@ -78,7 +74,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> deleteCryptoCurrency(UUID id) throws Exception {
+    public ResponseEntity<BaseResponse> deleteCryptoCurrency(UUID id)  {
         Optional<Cryptocurrency> cryptocurrencyOptional =cryptoCurrencyRepo.findById(id);
         if(!cryptocurrencyOptional.isPresent())
             throw new NotFoundException(ConstantUtils.CRYPTOCURRENCY_NOT_FOUND);
@@ -91,7 +87,7 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> updateByCryptoCurrency(UUID id, CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception {
+    public ResponseEntity<BaseResponse> updateByCryptoCurrency(UUID id, CryptoCurrencyDTO cryptoCurrencyDTO){
         Optional<Cryptocurrency> cryptocurrencyOptional=cryptoCurrencyRepo.findById(id);
         if(!cryptocurrencyOptional.isPresent())
             throw new NotFoundException(ConstantUtils.CRYPTOCURRENCY_NOT_FOUND);

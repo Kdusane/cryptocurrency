@@ -17,7 +17,7 @@ public class CryptoCurrencyController {
     CryptoCurrencyService cryptoCurrencyService;
 
     @PostMapping()
-    public ResponseEntity<BaseResponse> saveCryptoCurrency(@RequestBody CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception {
+    public ResponseEntity<BaseResponse> saveCryptoCurrency(@RequestBody CryptoCurrencyDTO cryptoCurrencyDTO)  {
         return cryptoCurrencyService.saveCryptoCurrency(cryptoCurrencyDTO);
     }
 
@@ -28,16 +28,16 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("/{cryptoCurrencyId}")
-    public ResponseEntity<BaseResponse> findByCryptoCurrencyId(@PathVariable(name = "cryptoCurrencyId") UUID id) throws Exception {
+    public ResponseEntity<BaseResponse> findByCryptoCurrencyId(@PathVariable(name = "cryptoCurrencyId") UUID id)  {
         return cryptoCurrencyService.findByCryptoCurrencyId(id);
     }
 
     @DeleteMapping("/{cryptoCurrencyId}")
-    public ResponseEntity<BaseResponse> deleteCryptoCurrency(@PathVariable(name = "cryptoCurrencyId") UUID id) throws Exception {
+    public ResponseEntity<BaseResponse> deleteCryptoCurrency(@PathVariable(name = "cryptoCurrencyId") UUID id)  {
         return cryptoCurrencyService.deleteCryptoCurrency(id);
     }
     @PutMapping("/{cryptoCurrencyId}")
-    public ResponseEntity<BaseResponse> update(@PathVariable(name = "cryptoCurrencyId") UUID id,@RequestBody CryptoCurrencyDTO cryptoCurrencyDTO) throws Exception {
+    public ResponseEntity<BaseResponse> update(@PathVariable(name = "cryptoCurrencyId") UUID id,@RequestBody CryptoCurrencyDTO cryptoCurrencyDTO)  {
         return cryptoCurrencyService.updateByCryptoCurrency(id,cryptoCurrencyDTO);
     }
 
