@@ -19,5 +19,5 @@ public class CurrencyDTO {
     private String symbol;
     private BigDecimal quotation;
     private String country;
-//    private List<CryptoCurrencyDTO> cryptoCurrencyDTOS;
+
 }

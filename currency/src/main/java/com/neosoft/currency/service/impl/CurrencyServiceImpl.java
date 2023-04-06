@@ -27,16 +27,14 @@ public class CurrencyServiceImpl implements CurrencyService {
     CurrencyRepo currencyRepo;
 
 
-    public ResponseEntity<BaseResponse> saveCurrency(CurrencyDTO currencyDTO) throws Exception {
+    public ResponseEntity<BaseResponse> saveCurrency(CurrencyDTO currencyDTO)  {
        Currency currency1=currencyRepo.findByName(currencyDTO.getName());
        if(currency1!=null) {
             throw new AlreadyPresentException(ConstantUtils.CURRENCY_ALREADY_PRESENT);
        }
        Currency currency = CurrencyHelper.currencyBuildEntity(currencyDTO);
        Currency saveCurrency = currencyRepo.save(currency);
-       if (saveCurrency == null)
-            throw new NotCreatedException(ConstantUtils.NOT_CREATED);
-       BaseResponse baseResponse = BaseResponse.builder()
+        BaseResponse baseResponse = BaseResponse.builder()
                 .data(saveCurrency)
                 .message(ConstantUtils.SUCCESFULLY_ADDED)
                 .statusCode(HttpStatus.CREATED.value())
@@ -65,7 +63,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> findByCurrencyId(UUID id) throws Exception {
+    public ResponseEntity<BaseResponse> findByCurrencyId(UUID id) {
         Optional<Currency> currencyOptional=currencyRepo.findById(id);
         if(!currencyOptional.isPresent())
             throw new NotFoundException(ConstantUtils.CURRENCY_NOT_FOUND);
@@ -78,9 +76,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> deleteCurrency(UUID id) throws Exception {
+    public ResponseEntity<BaseResponse> deleteCurrency(UUID id) {
         Optional<Currency> currencyOptional =currencyRepo.findById(id);
-        if(!currencyOptional.isPresent())
+        if(currencyOptional.isEmpty())
             throw new NotFoundException(ConstantUtils.CURRENCY_NOT_FOUND);
         currencyRepo.delete(currencyOptional.get());
         BaseResponse baseResponse=BaseResponse.builder()
@@ -92,9 +90,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> updateCurrency(UUID id, CurrencyDTO currencyDTO) throws Exception {
+    public ResponseEntity<BaseResponse> updateCurrency(UUID id, CurrencyDTO currencyDTO)  {
         Optional<Currency> currencyOptional=currencyRepo.findById(id);
-        if(!currencyOptional.isPresent())
+        if(currencyOptional.isEmpty())
             throw new NotFoundException(ConstantUtils.CURRENCY_NOT_FOUND);
         if(currencyDTO.getName()!=null)
             currencyOptional.get().setName(currencyDTO.getName());

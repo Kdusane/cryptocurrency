@@ -20,12 +20,7 @@ public class CurrencyHelper {
         currency.setSymbol(currencyDTO.getSymbol());
         currency.setId(UUID.randomUUID());
         currency.setName(currencyDTO.getName());
-//        List<Cryptocurrency> cryptocurrencyList=new ArrayList<>();
-//        for (CryptoCurrencyDTO cryptoCurrencyDTO:currencyDTO.getCryptoCurrencyDTOS()){
-//            Cryptocurrency cryptocurrency=CryptoCurrencyHelper.cryptoCurrencyBuildEntity(cryptoCurrencyDTO);
-//            cryptocurrencyList.add(cryptocurrency);
-//        }
-//        currency.setCryptocurrency(cryptocurrencyList);
+
         return currency;
     }
 
