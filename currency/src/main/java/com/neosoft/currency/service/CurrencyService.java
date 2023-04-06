@@ -10,13 +10,13 @@ import java.util.UUID;
 
 public interface CurrencyService {
 
-     ResponseEntity<BaseResponse> saveCurrency(CurrencyDTO currencyDTO) throws Exception;
+     ResponseEntity<BaseResponse> saveCurrency(CurrencyDTO currencyDTO) ;
 
      ResponseEntity<BaseResponse> findAllCurrency();
 
-     ResponseEntity<BaseResponse> findByCurrencyId(UUID id) throws Exception;
+     ResponseEntity<BaseResponse> findByCurrencyId(UUID id);
 
-     ResponseEntity<BaseResponse> deleteCurrency(UUID id) throws Exception;
+     ResponseEntity<BaseResponse> deleteCurrency(UUID id) ;
 
-     ResponseEntity<BaseResponse> updateCurrency(UUID id, CurrencyDTO currencyDTO) throws Exception;
+     ResponseEntity<BaseResponse> updateCurrency(UUID id, CurrencyDTO currencyDTO);
 }
