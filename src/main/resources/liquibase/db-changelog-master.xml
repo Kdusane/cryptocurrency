@@ -2,7 +2,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    
-    
+
+    <include file="changelog/create-user-table.sql" relativeToChangelogFile="true"/>
     <include file="changelog/create-account-table.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/alter-account-table.sql" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
