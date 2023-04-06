@@ -4,6 +4,7 @@ import com.neosoft.currency.constants.ConstantUtils;
 import com.neosoft.currency.domain.BaseResponse;
 import com.neosoft.currency.domain.requestDTO.CryptoCurrencyDTO;
 import com.neosoft.currency.exception.AlreadyPresentException;
+import com.neosoft.currency.exception.NotCreatedException;
 import com.neosoft.currency.exception.NotFoundException;
 import com.neosoft.currency.helper.CryptoCurrencyHelper;
 import com.neosoft.currency.model.Cryptocurrency;
@@ -30,6 +31,8 @@ public class CryptoCurrencyImpl implements CryptoCurrencyService {
             throw new AlreadyPresentException(ConstantUtils.CRYPTOCURRENCY_ALREADY_PRESENT);
         Cryptocurrency cryptocurrency = CryptoCurrencyHelper.cryptoCurrencyBuildEntity(cryptoCurrencyDTO);
         Cryptocurrency saveCryptoCurrency = cryptoCurrencyRepo.save(cryptocurrency);
+        if (saveCryptoCurrency == null)
+            throw new NotCreatedException(ConstantUtils.CRYPTOCURRENCY_NOT_CREATED);
         BaseResponse baseResponse = BaseResponse.builder().data(saveCryptoCurrency).message(ConstantUtils.SUCCESFULLY_ADDED).statusCode(HttpStatus.CREATED.value()).build();
         return ResponseEntity.ok(baseResponse);
     }
